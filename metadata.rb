@@ -26,4 +26,4 @@ end
 suggests "bluepill"
 suggests "daemontools"
 suggests "runit"
-depends "cron", ">= 1.2.0"
+suggests "cron"
