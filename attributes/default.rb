@@ -28,7 +28,8 @@ require 'rbconfig'
 default['chef_client']['config'] = {
   'chef_server_url' => Chef::Config[:chef_server_url],
   'validation_client_name' => Chef::Config[:validation_client_name],
-  'node_name' => Chef::Config[:node_name] == node['fqdn'] ? false : Chef::Config[:node_name]
+  'node_name' => Chef::Config[:node_name] == node['fqdn'] ? false : Chef::Config[:node_name],
+  'client_fork' => true
 }
 
 # By default, we don't have a log file, as we log to STDOUT
