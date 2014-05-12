@@ -35,6 +35,14 @@ supported_init_styles = [
 ]
 init_style = node["chef_client"]["init_style"]
 
+# rotate chef-client log everywhere
+template "/etc/logrotate.d/chef-client" do
+  source "client-logrotate.erb"
+  owner "root"
+  group "root"
+  mode "0644"
+end
+
 # Services moved to recipes
 if supported_init_styles.include? init_style
   include_recipe "chef-client::#{init_style}_service"
