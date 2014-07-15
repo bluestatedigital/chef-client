@@ -6,9 +6,4 @@
     notifempty
     sharedscripts
     create 644 root root
-    <% unless %{ps aux | grep [c]hef-client}.empty? %>
-    postrotate
-        /sbin/service chef-client restart > /dev/null
-    endscript
-    <% end %>
 }
