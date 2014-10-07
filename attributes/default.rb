@@ -56,7 +56,7 @@ default["chef_client"]["load_gems"] = {}
 
 # Any additional daemon options can be set as an array. This will be
 # join'ed in the relevant service configuration.
-default["chef_client"]["daemon_options"] = []
+default["chef_client"]["daemon_options"] = ["-f"]
 
 # Ohai plugins to be disabled are configured in /etc/chef/client.rb,
 # so they can be set as an array in this attribute.

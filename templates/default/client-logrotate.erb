@@ -1,0 +1,10 @@
+/var/log/chef/client.log {
+    rotate 7
+    daily
+    compress
+    missingok
+    notifempty
+    sharedscripts
+    copytruncate
+    create 644 root root
+}
