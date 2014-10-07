@@ -24,6 +24,9 @@ node_name <%= @chef_config['node_name'].inspect %>
 <% else -%>
 # Using default node name (fqdn)
 <% end -%>
+<% if @environment -%>
+environment <%= @environment.inspect %>
+<% end -%>
 <% unless node["chef_client"]["config"]["http_proxy"].nil? -%>
 
 # set the proxy env variable so rubygems works correctly
