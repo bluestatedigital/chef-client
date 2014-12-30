@@ -3,5 +3,12 @@
 ## and restarting chef on you.
 
 if ::File.exists?("/etc/nochef") then
-    raise "aborting chef run; /etc/nochef exists"
+    ctime = ::File::Stat.new("/etc/nochef").ctime().utc().iso8601()
+    
+    msg = IO.read("/etc/nochef").strip
+    if msg.length == 0 then
+        msg = "no reason given"
+    end
+    
+    raise "/etc/nochef created at #{ctime}: #{msg}"
 end
