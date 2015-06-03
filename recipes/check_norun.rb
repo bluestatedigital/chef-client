@@ -10,5 +10,6 @@ if ::File.exists?("/etc/nochef") then
         msg = "no reason given"
     end
     
+    Chef::Log.fatal("/etc/nochef created at #{ctime}: #{msg}")
     raise "/etc/nochef created at #{ctime}: #{msg}"
 end
