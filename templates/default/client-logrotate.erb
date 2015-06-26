@@ -1,6 +1,6 @@
 /var/log/chef/client.log {
-    rotate 7
     daily
+    rotate <%= retention_days %>
     compress
     missingok
     notifempty

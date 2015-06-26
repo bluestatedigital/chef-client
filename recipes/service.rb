@@ -38,6 +38,9 @@ init_style = node["chef_client"]["init_style"]
 # rotate chef-client log everywhere
 template "/etc/logrotate.d/chef-client" do
   source "client-logrotate.erb"
+  variables({
+    "retention_days" => node["chef_client"]["logrotate"]["retention_days"],
+  })
   owner "root"
   group "root"
   mode "0644"

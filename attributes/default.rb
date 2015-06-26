@@ -124,3 +124,5 @@ else
   default["chef_client"]["cache_path"]  = "/var/chef/cache"
   default["chef_client"]["backup_path"] = "/var/chef/backup"
 end
+
+default["chef_client"]["logrotate"]["retention_days"] = 7
