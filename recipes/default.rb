@@ -17,4 +17,4 @@
 # limitations under the License.
 #
 
-include_recipe "chef-client::service"
+include_recipe "chef-client::#{node['chef_client']['run_type']}"
