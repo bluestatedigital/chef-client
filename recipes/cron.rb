@@ -89,9 +89,6 @@ if node['chef_client']['cron']['use_cron_d']
     command "/bin/sleep #{sleep_time}; #{env} #{client_bin} &> #{log_file}"
   end
 else
-  cron_d "chef-client" do
-    action :delete
-  end
 
   cron "chef-client" do
     minute  node['chef_client']['cron']['minute']
