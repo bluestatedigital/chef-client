@@ -80,14 +80,13 @@ if node['chef_client']['cron']['use_cron_d']
     action :delete
   end
 
-  cron_d "chef-client" do
-    minute  node['chef_client']['cron']['minute']
-    hour    node['chef_client']['cron']['hour']
-    path    node['chef_client']['cron']['path'] if node['chef_client']['cron']['path']
-    user    "root"
-    shell   "/bin/bash"
-    command "/bin/sleep #{sleep_time}; #{env} #{client_bin} &> #{log_file}"
+  template '/etc/cron.staggered.halfhourly/chef-client-cron.erb' do
+    source 'chef-client-cron.rb'
+    owner 'root'
+    group 'root'
+    mode '0755'
   end
+
 else
 
   cron "chef-client" do
