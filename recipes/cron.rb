@@ -73,28 +73,19 @@ sleep_time = checksum.to_s.hex % node['chef_client']['splay'].to_i
 env        = node['chef_client']['cron']['environment_variables']
 log_file   = node["chef_client"]["cron"]["log_file"]
 
-# If "use_cron_d" is set to true, delete the cron entry that uses the cron
-# resource built in to Chef and instead use the cron_d LWRP.
-if node['chef_client']['cron']['use_cron_d']
-  cron "chef-client" do
-    action :delete
-  end
 
-  template '/etc/cron.staggered.halfhourly/chef-client-cron.erb' do
-    source 'chef-client-cron.rb'
-    owner 'root'
-    group 'root'
-    mode '0755'
-  end
+template '/etc/cron.staggered.halfhourly/chef-client-cron.erb' do
+  source 'chef-client-cron.rb'
+  owner 'root'
+  group 'root'
+  mode '0755'
+end
 
-else
-
-  cron "chef-client" do
-    minute  node['chef_client']['cron']['minute']
-    hour    node['chef_client']['cron']['hour']
-    path    node['chef_client']['cron']['path'] if node['chef_client']['cron']['path']
-    user    "root"
-    shell   "/bin/bash"
-    command "/bin/sleep #{sleep_time}; #{env} #{client_bin} &> #{log_file}"
-  end
+cron "chef-client" do
+  minute  node['chef_client']['cron']['minute']
+  hour    node['chef_client']['cron']['hour']
+  path    node['chef_client']['cron']['path'] if node['chef_client']['cron']['path']
+  user    "root"
+  shell   "/bin/bash"
+  command "/bin/sleep #{sleep_time}; #{env} #{client_bin} &> #{log_file}"
 end
