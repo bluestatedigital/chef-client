@@ -74,8 +74,8 @@ env        = node['chef_client']['cron']['environment_variables']
 log_file   = node["chef_client"]["cron"]["log_file"]
 
 
-template '/etc/cron.staggered.halfhourly/chef-client-cron.erb' do
-  source 'chef-client-cron.rb'
+template '/etc/cron.staggered.halfhourly/chef-client-cron.rb' do
+  source 'chef-client-cron.erb'
   owner 'root'
   group 'root'
   mode '0755'
